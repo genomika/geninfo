@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+{% load static %}
+{% load homeStatus %}
+
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GenInfo</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styleHome.css' %}">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{% static 'js/reload.js' %}"></script>
+</head>
+<body>
+    <div class="container" id="body_home">
+        <header>
+            <div class="app">
+                <div class="company-logo">
+                    <img class="imag" src="../static/images/genomika-einstein.png">       
+                </div>
+                <a class="slogan" href="/" style="text-decoration: none;">GenInfo</a>
+            </div>
+        </header>
+        <div style="margin: 0px auto;">
+            <div class="information">
+                <div class="components-list">
+                    <div>
+                        <div>
+                            <img class="verifica-img" src="../static/images/verifica.png">
+                            <a style="font-size: 13px; color: rgb(101, 101, 101);">Operacional</a>
+                            <img class="alert-img" src="../static/images/triangulo.png">
+                            <a style="font-size: 13px; color: rgb(101, 101, 101);">Não Operacional</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% for object in services %}
+            <div class="card-services">
+                <div class="div-title-name">
+                    <div class="expand"></div>
+                    <a>{{object.name}}</a>
+                    <div class="position-img">
+                        {% status_service object.pk as ok %}
+                        {% if ok %}
+                            <img class="verifica-img-inline" style="border-radius: 0px;" src="../static/images/triangulo_2.png">
+                        {% else %}
+                            <img class="verifica-img-inline" src="../static/images/verifica_2.png">
+                        {% endif %}
+                    </div>
+                    <div class="oculta">
+                        <div>
+                            {% for object_incidents in incidents %}
+                                {% if object_incidents.status_incident == 'pe' or object_incidents.status_incident == 'en'%}
+                                    {% for service_affected in object_incidents.services_afted.all %}
+                                        {% if object.name == service_affected.name %}
+                                            {% if date_current == date_incident_in %}
+                                                <div class="card-inc">
+                                                    <a style="color: rgb(101, 101, 101); font-size: 19px">{{object_incidents.name_incident}}</a>
+                                                    <div class="rec-inc">
+                                                        <a style="text-decoration: none; font-size: 19px; color: rgb(58, 192, 196);" href="incidents_reports/{{object_incidents.pk}}/">Exibir mais</a>
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <br>
+        <div class="table-inc">
+            <div class="recente-inc-header">
+                <div class="recents-inc">
+                    <div class="tab-inc">Historico de incidentes</div>
+                    <div class="tab-false">Total de incidentes no mês: {% overall_incident %}</div>
+                    <div class="tab-false">
+                        <a style="text-decoration: none; color: rgb(101, 101, 101);" id="area" href="/all_incidents">
+                            Todos os incidentes
+                        </a>
+                    </div>
+                </div>
+                <div class="filter">
+                    <div class="filter-content">
+                        <div class="btn-group" role="combobox" aria-expanded="false" aria-haspopup="listbox" aria-labelledby="downshift-0-label">
+                            <div class="time-select" style="border: none; background: inherit;">
+                                <span>Últimos 7 dias</span>
+                                <div class="expand-days"></div>
+                                <div class="card-days">Últimos 15 dias</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="history-inc">
+                <div class="inc-descri">
+                {% block content %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer-by">
+        <p>© 2021 Genomika Diagnósticos | GenInfo v0.3 - Lucas Eduardo</p>
+    </footer>
+    <script type="text/javascript" src="{% static 'js/expand.js' %}"></script>
+</body>
+</html>

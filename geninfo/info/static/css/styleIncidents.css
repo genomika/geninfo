@@ -1,0 +1,108 @@
+.back{
+    margin-bottom: 40px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    color: rgb(23, 43, 77);
+}
+
+.content-incidents{
+    display: block;
+    max-width: 1000px;
+    width: calc(100% - 75px);
+    min-height: calc(100vh - 238px);
+    margin: 0px auto;
+    padding: 20px 30px;
+}
+
+.back-home{
+    cursor: pointer;
+}
+
+.reports-inline{
+    padding: 10px;
+    color: rgb(101, 101, 101);
+}
+
+.div-inline{
+    border-bottom: 1px solid rgb(226, 226, 226);
+    /* padding: 20px; */
+}
+
+.div-inline-content{
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    opacity: 0.8;
+    margin-left: 15px;
+    margin-bottom: 1rem;
+    color: rgb(11, 13, 17) !important;
+    margin-right: 15px;
+}
+
+.title-incidents{
+    color: rgb(23, 43, 77);
+    font-size: 16px;
+    text-decoration: rgb(23, 43, 77);
+    font-weight: bolder;
+}
+
+.date-report{
+    color: rgb(11, 13, 17);
+    font-size: 15px;
+    font-weight: bolder;
+    padding: 10px;
+}
+
+.obs-report{
+    /* float: right; */
+    padding: 5px;
+    color: rgb(11, 13, 17);
+    font-size: 15px;
+    font-weight: bolder;
+}
+
+.content-obs{
+    font-size: 15px;
+}
+
+/* CONTEUDO DOS RELATORIOS */
+
+.container-reports{
+    display: flex;
+    width: 100%;
+    max-width: 1080px;
+    /* margin: 0px auto 16px; */
+    flex-direction: column;
+}
+
+.status-incident{
+    display: inline-block;
+    box-sizing: border-box;
+    border: 1px solid rgb(0, 121, 88);
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.5;
+    padding: 3px 8px;
+    text-align: center;
+    margin-left: 10px;
+}
+
+.name-inc{
+    float: right;
+    color: rgb(236, 179, 32);
+    padding: 5px;
+    font-size: 25px;
+}
+
+.content-descri{
+    text-align: center;
+    font-size: 20px;
+    color: rgb(101, 101, 101);
+    padding: 20px;
+}
+
+.content-card{
+    padding: 10px;
+}

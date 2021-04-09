@@ -1,0 +1,110 @@
+
+<div style="margin: 0px auto;">
+    <div class="information">
+        <div class="components-list">
+            <div>
+                <div>
+                    <img class="verifica-img" src="../static/images/verifica.png">
+                    <a style="font-size: 13px; color: rgb(101, 101, 101);">Operacional</a>
+                    <img class="alert-img" src="../static/images/triangulo.png">
+                    <a style="font-size: 13px; color: rgb(101, 101, 101);">Não Operacional</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% for object in services %}
+    <div class="card-services">
+        <div class="div-title-name">
+            <div class="expand"></div>
+            <a>{{object.name}}</a>
+            <div class="position-img">
+                {% if object.status_service == 'op' %}
+                    <img class="verifica-img-inline" src="../static/images/verifica_2.png">
+                {% else %}
+                    <img class="verifica-img-inline" style="border-radius: 0px;" src="../static/images/triangulo_2.png">
+                {% endif %}
+            </div>
+            <div class="oculta">
+                <div>
+                    {% for object_incidents in incidents %}
+                        {% if object_incidents.status_incident == 'pe' or object_incidents.status_incident == 'en'%}
+                            {% for service_affected in object_incidents.services_afted.all %}
+                                {% if object.name == service_affected.name %}
+                                    {% if date_current == date_incident_in %}
+                                        <div class="card-inc">
+                                            <a style="color: rgb(101, 101, 101); font-size: 19px">{{object_incidents.name_incident}}</a>
+                                            <div class="rec-inc">
+                                                <a style="text-decoration: none; font-size: 19px; color: rgb(58, 192, 196);" href="incidents_reports/{{object_incidents.pk}}/">Exibir mais</a>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<br>
+<div class="table-inc">
+<div class="recente-inc-header">
+    <div class="recents-inc">
+        <div class="tab-inc">Historico de incidentes</div>
+        <div class="tab-false">Total de incidentes no mês: {% overall_incident %}</div>
+    </div>
+    <div class="filter">
+        <div class="filter-content">
+            <div class="btn-group" role="combobox" aria-expanded="false" aria-haspopup="listbox" aria-labelledby="downshift-0-label">
+                <div class="time-select" style="border: none; background: inherit;">
+                    <span>Últimos 7 dias</span>
+                    <div class="expand-days"></div>
+                    <div class="card-days">Últimos 15 dias</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="history-inc">
+    <div class="inc-descri">
+        {% for objects_incidents in incidents reversed %}
+        <div class="date-inc">{{objects_incidents.last_date_incident}}</div>
+        <div class="content">
+            <div class="title-desc">
+                <span style="padding-right: 16px;">
+                    <div class="status-inc">
+                        <span style="color: rgb(0, 121, 88);">{{objects_incidents.get_status_incident_display}}</span>
+                    </div>
+                </span>
+                <span style="padding-right: 16px; color: rgb(23, 43, 77); /*font-weight: bold;*/">
+                    Incidente ocorrido em: 
+                    <div class="hour-inc">{{objects_incidents.date_incident}}</div>
+                </span>
+                <span style="font-weight: 600; color: rgb(23, 43, 77);">
+                    Duração: 
+                    <div class="time-dura-inc">{% duration_incident objects_incidents.number_incident %}</div>
+                </span>
+            </div>
+            <div class="title-inc">
+                <a style="color: rgb(236, 179, 32); text-decoration: none;" href="incidents_reports/{{objects_incidents.pk}}/">{{objects_incidents.name_incident}}</a>
+            </div>
+            <div class="inc-descri-erro">{{objects_incidents.description}}</div>
+            <div class="components-afected">
+                <div class="services-afectds">Serviços Afetados:</div>
+                <div class="ajusted-services">
+                    <div class="services-inc">
+                        <div class="parent">
+                            {% for service_affected in objects_incidents.services_afted.all %}
+                            <span class="parent-content">{{service_affected.name}}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="div-inline"></div>
+    {% endfor %}
+    </div>
+</div>

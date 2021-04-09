@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load static %}
+{% load homeStatus %}
+
+{% block content %}
+
+{% for objects_incidents in incidents_filter reversed %}
+    <div class="reports">
+        <div class="last_updates">
+            <span>Última atualização: </span>
+        </div>
+        <div class="last_content">
+            <a>{% last_report objects_incidents.number_incident %}</a>
+        </div>
+    </div>
+    <div class="date-inc">{{objects_incidents.last_date_incident}}</div>
+    <div class="content">
+        <div class="title-desc">
+            <span style="padding-right: 16px;">
+                <div class="status-inc">
+                    <span style="color: rgb(0, 121, 88);">{{objects_incidents.get_status_incident_display}}</span>
+                </div>
+                <div class="status-inc-impact">
+                    {% if objects_incidents.incident_impact == 'le' %}
+                        <span class="status-inc-green" style="color: rgb(0, 121, 88);">{{objects_incidents.get_incident_impact_display}}</span>
+                    {% endif %}
+                    {% if objects_incidents.incident_impact == 'mo' %}
+                        <span class="status-inc-yelow" style="color: rgb(236, 179, 32);">{{objects_incidents.get_incident_impact_display}}</span>
+                    {% endif %}
+                    {% if objects_incidents.incident_impact == 'gv' %}
+                        <span class="status-inc-red" style="color: rgb(255, 4, 4);">{{objects_incidents.get_incident_impact_display}}</span>
+                    {% endif %}
+                </div>
+                <div class="status-inc-occurence">
+                    <span style="color: rgb(101, 101, 101);">{{objects_incidents.get_incident_occurrence_display}}</span>
+                </div>
+            </span>
+            <span style="padding-right: 16px; color: rgb(23, 43, 77);">
+                Incidente ocorrido em: 
+                <div class="hour-inc">{{objects_incidents.date_incident}}</div>
+            </span>
+            <span style="font-weight: 600; color: rgb(23, 43, 77);">
+                Duração: 
+                <div class="time-dura-inc">{% duration_incident objects_incidents.number_incident %}</div>
+            </span>
+        </div>
+        <div class="title-inc">
+            <a style="color: rgb(236, 179, 32); text-decoration: none;" href="incidents_reports/{{objects_incidents.pk}}/">{{objects_incidents.name_incident}}</a>
+        </div>
+        <div class="inc-descri-erro">{{objects_incidents.description}}</div>
+        <div class="components-afected">
+            <div class="services-afectds">Serviços Afetados:</div>
+            <div class="ajusted-services">
+                <div class="services-inc">
+                    <div class="parent">
+                        {% for service_affected in objects_incidents.services_afted.all %}
+                        <span class="parent-content">{{service_affected.name}}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="div-inline"></div>
+{% endfor %}
+{% endblock %}

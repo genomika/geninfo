@@ -1,0 +1,82 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Facebook sharing information tags -->
+    <meta property="og:title" content="">
+    <title>Alerta de Incidentes</title>
+</head>
+<body style="background: #ECF0F5; color: #999;">
+    <table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="backgroundTable" >
+    <tr>
+        <td align="center" valign="top">
+        <table border="0" cellpadding="0" cellspacing="0" width="" id="emailContainer" style="margin:0 auto;font-family: Calibri, Arial, Verdana; background: #fff; border-bottom: 1px solid #A5BFCC; padding:0 10px;">
+            <tr>
+                <td align="left" valign="top" width="100%" style="background-color:#fff; border-bottom: 1px dotted #A5BFCC;padding:10px">
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                            <td align="left">
+                                <img src="https://di0da3x67ebhy.cloudfront.net/static/media/uploads/imagens_externas/gnmklogo.061363.png" alt="#" width="205" />
+                            </td>
+
+                            <td align="right">
+                                <a href="https://genomika-geninfo.herokuapp.com/" style="color:#006AA9; text-decoration:none;">ACESSE O GenINFO</a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+            <td style="padding:10px">
+                <div class="equipment-historic">
+                    <div style="width: 100%;">
+                        <div style="text-align: center; margin-bottom: 20px; ">
+                            <b><a>[Nº do Incidente: {{number_incident}}]</a></b>
+                        </div>
+                        <div style="margin-bottom: 20px; padding: 10px;">
+                            <a style="color: red;">Atenção: <a>Incidente aberto nos sistemas: <a style="font-weight: bold;">{{affectds}}</a></a></a>
+                        </div>
+                        <div style="padding: 10px;">
+                            <div style="margin-bottom: 10px;">
+                                <a>Olá prezado(a)s,</a><br>
+                            </div>
+                            <a>Foi aberto um novo incidente de nome: <a style="font-weight: bold;">{{incident_name}}</a></a>
+                            <br>
+                            <a>Para os sistemas: <a style="font-weight: bold;">{{affectds}}</a></a>
+                            <div>
+                                <a>Motivo do erro: </a>
+                                <br>
+                                <div style="padding: 15px;">
+                                    <a>{{description}}</a>
+                                </div>
+                            </div>
+                            <div style="margin-bottom: 30px;">
+                                <a>Para acompanhar o status do incidente <a style="color:#006AA9; text-decoration:none;" href="https://genomika-geninfo.herokuapp.com/incidents_reports/{{objects_incidents}}/">clicando aqui!</a></a>
+                            </div>
+                            <div>
+                                <a>Logo que o mesmo for sanado, enviaremos um E-mail com mais informações</a>
+                                <br>
+                                <div style="margin-top: 10px;">
+                                    <a>Agradecemos a compreensão,</a>
+                                </div>
+                                <br>
+                                <div style="font-size:13px; margin-top: 10px;">
+                                    <b><a>Equipe de TI GENOMIKA - EINSTEIN</a></b>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        <tr>
+            <td style="padding:10px;">
+            <p style="font-size:12px;color:#ccc">Você recebeu este e-mail por causa do Alerta cadastrado. Por favor não responda este e-mail. <a style="color:#006AA9; text-decoration:none;" href="mailto:helpdesk@genomika.com.br">clicando aqui</a>.
+            </p>
+            </td>
+        </tr>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

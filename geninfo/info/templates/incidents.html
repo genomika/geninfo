@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load incidents_screen %}
+
+{% block content %}
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incidents</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styleIncidents.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styleHome.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="app">
+                <div class="company-logo">
+                    <img class="imag" src="https://genomika-geninfo.herokuapp.com/static/images/genomika-einstein.png">    
+                </div>
+                <a class="slogan" href="/" style="text-decoration: none;">GenInfo</a>
+            </div>
+        </header>
+        <div class="content-incidents">
+            <div class="back">
+                <span class="back-home">
+                    <a href="/" style="text-decoration: none; color: rgb(101, 101, 101);">Home</a>
+                </span>
+                <span>
+                    >
+                </span>
+                <span class="title-incidents">
+                    Incidentes
+                </span>
+            </div>
+            <div class="card-services">
+                <div class="content-card">
+                    <div class="date-inc">
+                        <a>{% date_incident incidents.pk %}</a>
+                        <div class="name-inc">
+                            <span>{{incidents.name_incident}}</span>
+                            <div class="duration-inc">
+                                <span style="font-size: 12px;">Duração: {% duration_incident incidents.number_incident %}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="status-incident">
+                        <span style="color: rgb(0, 121, 88);">{{incidents.get_status_incident_display}}</span>
+                    </div>
+                    <div class="status-inc-impact">
+                        {% if incidents.incident_impact == 'le' %}
+                            <span class="status-inc-green" style="color: rgb(0, 121, 88);">{{incidents.get_incident_impact_display}}</span>
+                        {% endif %}
+                        {% if incidents.incident_impact == 'mo' %}
+                            <span class="status-inc-yelow" style="color: rgb(238, 222, 0);">{{incidents.get_incident_impact_display}}</span>
+                        {% endif %}
+                        {% if incidents.incident_impact == 'gv' %}
+                            <span class="status-inc-red" style="color: rgb(255, 4, 4);">{{incidents.get_incident_impact_display}}</span>
+                        {% endif %}
+                    </div>
+                    <div class="status-inc-occurence">
+                        <span style="color: rgb(101, 101, 101);">{{incidents.get_incident_occurrence_display}}</span>
+                    </div>
+                    <div class="content-descri">
+                        <span>{{incidents.description}}</span>
+                    </div>
+                    <div class="services-afectds">Serviços Afetados:</div>
+                    <div class="services-inc">
+                        <div class="parent">
+                            {% for service_affected in incidents.services_afted.all %}
+                            <span class="parent-content">{{service_affected.name}}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="div-inline"></div>
+                <div class="date-report">
+                    <a>Data do Relátorio</a>
+                    <a style="float: right;">Observações do Relátorio</a>
+                </div>
+                {% for reports in incidents.reports.all reversed %}
+                <div class="container-reports">
+                    <div class="date-report">
+                        <div style="color: rgb(101, 101, 101); padding: 10px;">
+                            <span>
+                                <a>{% date_ajusted reports.pk %}</a>
+                            </span>
+                            <span style="float: right;">
+                                <a>{{reports.description_report}}</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

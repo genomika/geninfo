@@ -1,0 +1,9 @@
+Django==2.0
+psycopg2-binary>=2.8
+psycopg2
+django-suit==0.2.26
+python-decouple==3.0
+gunicorn
+django-heroku==0.3.1
+whitenoise
+django-sendgrid-v5
