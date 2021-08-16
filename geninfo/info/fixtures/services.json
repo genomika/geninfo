@@ -1,0 +1,82 @@
+[
+    {
+        "model": "info.service",
+        "pk": 1,
+        "fields": {
+            "name": "Internet",
+            "status_service": "op"
+        }
+    },
+    {
+        "model": "info.service",
+        "pk": 2,
+        "fields": {
+            "name": "Banco de Dados",
+            "status_service": "op"
+        }
+    },
+    {
+        "model": "info.service",
+        "pk": 3,
+        "fields": {
+            "name": "Plataforma A",
+            "status_service": "op"
+        }
+    },
+    {
+        "model": "info.service",
+        "pk": 4,
+        "fields": {
+            "name": "Plataforma B",
+            "status_service": "op"
+        }
+    },
+    {
+        "model": "info.service",
+        "pk": 5,
+        "fields": {
+            "name": "SAP",
+            "status_service": "op"
+        }
+    },
+    {
+        "model": "info.service",
+        "pk": 6,
+        "fields": {
+            "name": "WebSite",
+            "status_service": "op"
+        }
+    },
+    {
+        "model": "info.service",
+        "pk": 7,
+        "fields": {
+            "name": "Salus",
+            "status_service": "op"
+        }
+    },
+    {
+        "model": "info.service",
+        "pk": 8,
+        "fields": {
+            "name": "Fusion",
+            "status_service": "op"
+        }
+    },
+    {
+        "model": "info.service",
+        "pk": 9,
+        "fields": {
+            "name": "Telefonia",
+            "status_service": "nop"
+        }
+    },
+    {
+        "model": "info.service",
+        "pk": 10,
+        "fields": {
+            "name": "Impressoras",
+            "status_service": "op"
+        }
+    }
+    ]

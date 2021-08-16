@@ -1,1 +1,1 @@
-web: gunicorn geninfo.wsgi
+web: gunicorn geninfo.wsgi --log-file -

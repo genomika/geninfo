@@ -1,35 +1,29 @@
 version: "2"
 
 services:
-  web:
+  web-test:
     build: .
     #command: python3 manage.py runserver 0.0.0.0:8000
-    command: bash -c "pip install -r requirements.txt && gunicorn geninfo.wsgi:application --bind 0.0.0.0:8000"
+    command: bash -c "pip install -r requirements.txt && requirements-dev.txt"
     volumes:
       - .:/usr/src/
     expose:
       - 8000
-    env_file: .env
+    env_file: .env.test
     depends_on:
-      - db
-  db:
+      - db-test
+  db-test:
     image: postgres
     restart: always
     volumes:
       - postgres_data:/var/lib/postgresql/data/
-    env_file: .env-db
+    env_file: .env-test-db
     ports:
       - "5432:5432"
   redis:
     image: redis:alpine
     ports:
       - "6379:6379"
-  nginx:
-    build: ./nginx
-    ports:
-      - "8000:80"
-    depends_on:
-      - web
   mailhog: # service for faking a SMTP server
     image: mailhog/mailhog
     ports:

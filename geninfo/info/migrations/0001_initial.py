@@ -7,40 +7,89 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Incidents',
+            name="Incidents",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name_incident', models.CharField(max_length=30, verbose_name='Nome do incidente')),
-                ('date_incident', models.DateTimeField(auto_now_add=True, verbose_name='Data de inicio')),
-                ('last_date_incident', models.DateTimeField(auto_now=True, verbose_name='Ultima atualização')),
-                ('description', models.TextField(max_length=400, verbose_name='Descrição do incidente')),
-                ('duration_incident', models.CharField(max_length=30, verbose_name='Duração do incidente')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name_incident",
+                    models.CharField(max_length=30, verbose_name="Nome do incidente"),
+                ),
+                (
+                    "date_incident",
+                    models.DateTimeField(
+                        auto_now_add=True, verbose_name="Data de inicio"
+                    ),
+                ),
+                (
+                    "last_date_incident",
+                    models.DateTimeField(
+                        auto_now=True, verbose_name="Ultima atualização"
+                    ),
+                ),
+                (
+                    "description",
+                    models.TextField(
+                        max_length=400, verbose_name="Descrição do incidente"
+                    ),
+                ),
+                (
+                    "duration_incident",
+                    models.CharField(
+                        max_length=30, verbose_name="Duração do incidente"
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Incidente',
-                'verbose_name_plural': 'Incidentes',
+                "verbose_name": "Incidente",
+                "verbose_name_plural": "Incidentes",
             },
         ),
         migrations.CreateModel(
-            name='Services',
+            name="Services",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=30, verbose_name='Nome do Serviço')),
-                ('status_service', models.CharField(choices=[('op', 'Operacional'), ('nop', 'Não Operacional')], default='op', max_length=30, verbose_name='Status do Serviço')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(max_length=30, verbose_name="Nome do Serviço"),
+                ),
+                (
+                    "status_service",
+                    models.CharField(
+                        choices=[("op", "Operacional"), ("nop", "Não Operacional")],
+                        default="op",
+                        max_length=30,
+                        verbose_name="Status do Serviço",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Serviço',
-                'verbose_name_plural': 'Serviços',
+                "verbose_name": "Serviço",
+                "verbose_name_plural": "Serviços",
             },
         ),
         migrations.AddField(
-            model_name='incidents',
-            name='services_afted',
-            field=models.ManyToManyField(to='info.Services'),
+            model_name="incidents",
+            name="services_afted",
+            field=models.ManyToManyField(to="info.Services"),
         ),
     ]

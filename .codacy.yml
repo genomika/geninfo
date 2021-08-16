@@ -1,0 +1,9 @@
+engines:
+  prospector:
+    enabled: true
+    python_version: 3
+
+exclude_paths:
+  - "geninfo/info/migrations/**.py"
+  - "geninfo/**/test*.py"
+  - "geninfo/common/migrations/**.py"

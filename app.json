@@ -7,11 +7,16 @@
       "DJANGO_SECRET_KEY": {
         "description": "A randomly generated secret to secure your Django installation",
         "generator": "secret"
+      },
+      "DJANGO_SETTINGS_MODULE": {
+        "description": "Django settings Python import path",
+        "value": "geninfo.settings.production"
       }
     },
     "addons": [
         "heroku-postgresql:hobby-dev",
-        "sendgrid:starter"
+        "sendgrid:starter",
+        "sentry"
     ],
     "scripts": {
       "postdeploy": "python manage.py migrate --noinput"

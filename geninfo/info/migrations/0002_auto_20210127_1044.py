@@ -9,58 +9,143 @@ import geninfo.info.models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('contenttypes', '0002_remove_content_type_name'),
+        ("contenttypes", "0002_remove_content_type_name"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('info', '0001_initial'),
+        ("info", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Incident',
+            name="Incident",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('number_incident', models.CharField(default=geninfo.info.models.increment_id, editable=False, max_length=300)),
-                ('name_incident', models.CharField(max_length=30, verbose_name='Nome do incidente')),
-                ('status_incident', models.CharField(choices=[('pe', 'Pendente'), ('en', 'Em Análise'), ('rs', 'Resolvido')], default='pe', max_length=30, verbose_name='Status do Incidente')),
-                ('finish_date_incidente', models.DateTimeField(blank=True, null=True, verbose_name='Data de Conclusão')),
-                ('date_incident', models.DateTimeField(auto_now_add=True, verbose_name='Data de inicio')),
-                ('last_date_incident', models.DateTimeField(auto_now=True, verbose_name='Ultima atualização')),
-                ('description', models.TextField(max_length=400, verbose_name='Descrição do incidente')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "number_incident",
+                    models.CharField(
+                        default=geninfo.info.models.increment_id,
+                        editable=False,
+                        max_length=300,
+                    ),
+                ),
+                (
+                    "name_incident",
+                    models.CharField(max_length=30, verbose_name="Nome do incidente"),
+                ),
+                (
+                    "status_incident",
+                    models.CharField(
+                        choices=[
+                            ("pe", "Pendente"),
+                            ("en", "Em Análise"),
+                            ("rs", "Resolvido"),
+                        ],
+                        default="pe",
+                        max_length=30,
+                        verbose_name="Status do Incidente",
+                    ),
+                ),
+                (
+                    "finish_date_incidente",
+                    models.DateTimeField(
+                        blank=True, null=True, verbose_name="Data de Conclusão"
+                    ),
+                ),
+                (
+                    "date_incident",
+                    models.DateTimeField(
+                        auto_now_add=True, verbose_name="Data de inicio"
+                    ),
+                ),
+                (
+                    "last_date_incident",
+                    models.DateTimeField(
+                        auto_now=True, verbose_name="Ultima atualização"
+                    ),
+                ),
+                (
+                    "description",
+                    models.TextField(
+                        max_length=400, verbose_name="Descrição do incidente"
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Incidente',
-                'verbose_name_plural': 'Incidentes',
+                "verbose_name": "Incidente",
+                "verbose_name_plural": "Incidentes",
             },
         ),
         migrations.CreateModel(
-            name='Report',
+            name="Report",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('description_report', models.CharField(max_length=400, verbose_name='Relatório')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='Criado em')),
-                ('object_id', models.PositiveIntegerField()),
-                ('content_type', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='contenttypes.ContentType')),
-                ('user', models.ForeignKey(editable=False, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='reports', to=settings.AUTH_USER_MODEL, verbose_name='Usuário')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "description_report",
+                    models.CharField(max_length=400, verbose_name="Relatório"),
+                ),
+                (
+                    "created_at",
+                    models.DateTimeField(auto_now_add=True, verbose_name="Criado em"),
+                ),
+                ("object_id", models.PositiveIntegerField()),
+                (
+                    "content_type",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="contenttypes.ContentType",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        editable=False,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="reports",
+                        to=settings.AUTH_USER_MODEL,
+                        verbose_name="Usuário",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Relatório',
-                'verbose_name_plural': 'Relatórios',
+                "verbose_name": "Relatório",
+                "verbose_name_plural": "Relatórios",
             },
         ),
         migrations.RemoveField(
-            model_name='incidents',
-            name='services_afted',
+            model_name="incidents",
+            name="services_afted",
         ),
         migrations.RenameModel(
-            old_name='Services',
-            new_name='Service',
+            old_name="Services",
+            new_name="Service",
         ),
         migrations.DeleteModel(
-            name='Incidents',
+            name="Incidents",
         ),
         migrations.AddField(
-            model_name='incident',
-            name='services_afted',
-            field=models.ManyToManyField(related_name='incidents_affected', to='info.Service', verbose_name='Serviços afetados'),
+            model_name="incident",
+            name="services_afted",
+            field=models.ManyToManyField(
+                related_name="incidents_affected",
+                to="info.Service",
+                verbose_name="Serviços afetados",
+            ),
         ),
     ]

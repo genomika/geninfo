@@ -6,13 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('info', '0006_incident_incident_impact'),
+        ("info", "0006_incident_incident_impact"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='incident',
-            name='incident_occurrence',
-            field=models.CharField(choices=[('co', 'Corretivo'), ('pv', 'Preventivo')], default='co', max_length=30, verbose_name='Tipo do incidente'),
+            model_name="incident",
+            name="incident_occurrence",
+            field=models.CharField(
+                choices=[("co", "Corretivo"), ("pv", "Preventivo")],
+                default="co",
+                max_length=30,
+                verbose_name="Tipo do incidente",
+            ),
         ),
     ]

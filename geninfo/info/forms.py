@@ -1,24 +1,25 @@
 from django import forms
+
 # from django.forms import ModelChoiceField
 from .models import Incident
 
-class IncidentForm(forms.ModelForm):
 
+class IncidentForm(forms.ModelForm):
     class Meta:
         model = Incident
-        fields = '__all__'
+        fields = "__all__"
 
     def clean(self):
 
-        status_type = self.cleaned_data['status_incident']
-        affected = self.cleaned_data['services_afted']
-        end_date = self.cleaned_data['finish_date_incidente']
+        status_type = self.cleaned_data["status_incident"]
+        end_date = self.cleaned_data["finish_date_incidente"]
         # reports = ModelChoiceField(queryset=None, label='reports', required=False)
 
-
-        if status_type == 'rs':
+        if status_type == "rs":
             if not end_date:
-                raise forms.ValidationError('Informe a data de conclusão do Incidente! ')
+                raise forms.ValidationError(
+                    "Informe a data de conclusão do Incidente! "
+                )
 
         # if affected.count() == 3:
         #     # print(reports.count(), "<<")
