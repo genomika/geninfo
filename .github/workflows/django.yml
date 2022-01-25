@@ -22,7 +22,7 @@ jobs:
         pip install -r requirements.txt && pip install -r requirements-dev.txt
     - name: Run Missing migrations test
       working-directory: .
-      run: python manage.py makemigrations --check --dry-run --ignore authtools
+      run: python manage.py has_missing_migrations
       env:
         DATABASE_URL: 'sqlite:///'
         DJANGO_SETTINGS_MODULE: 'geninfo.settings.test'
