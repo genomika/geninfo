@@ -1,5 +1,6 @@
 from .base import *  # noqa
 
+
 DEBUG = True
 
 # Email settings for mailhog

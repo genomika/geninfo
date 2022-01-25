@@ -1,6 +1,8 @@
 from django import template
-from ..models import Incident, Service
 from django.utils import timezone
+
+from ..models import Incident, Service
+
 
 register = template.Library()
 
@@ -21,7 +23,7 @@ def overall_incident():
     try:
         if overall > 0:
             return overall
-    except:
+    except Exception:
         return "Sem incidentes"
 
 
@@ -82,7 +84,7 @@ def duration_incident(incident_object):
                 return date_duration_hour + " Horas"
         else:
             return " - "
-    except:
+    except Exception:
         return "-"
 
 

@@ -6,7 +6,7 @@ clean:
 
 
 build:
-	docker build --tag geninfo .
+	docker build --tag geninfo . 
 
 up: down build
 	docker-compose up -d
@@ -43,6 +43,9 @@ shell:
 
 bash:
 	docker-compose exec web /bin/bash
+
+tox:
+	docker-compose exec web tox .
 
 test:
 	docker-compose run web  python manage.py test $(ARG) --parallel --keepdb

@@ -1,17 +1,16 @@
-from django.contrib import admin
+import csv
+
 from django.conf import settings
-
-from .models import Service, Incident, Report
+from django.contrib import admin
+from django.contrib.admin.helpers import ACTION_CHECKBOX_NAME
 from django.contrib.contenttypes.admin import GenericStackedInline
-from .forms import IncidentForm
-
 from django.core.mail import EmailMultiAlternatives
+from django.http import HttpResponse
 from django.template.defaultfilters import striptags
 from django.template.loader import render_to_string
 
-from django.http import HttpResponse
-import csv
-from django.contrib.admin.helpers import ACTION_CHECKBOX_NAME
+from .forms import IncidentForm
+from .models import Incident, Report, Service
 
 
 def incident_report(modeladmin, request, queryset):

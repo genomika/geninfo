@@ -1,7 +1,9 @@
-from django.shortcuts import render
-from .models import Service, Incident
-from django.utils import timezone
 from datetime import timedelta
+
+from django.shortcuts import render
+from django.utils import timezone
+
+from .models import Incident, Service
 
 
 def get_home(request):

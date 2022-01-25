@@ -1,8 +1,10 @@
-from django.conf.urls import url
 from django.conf import settings
-from geninfo.info import views
-from django.views.generic.base import RedirectView
+from django.conf.urls import url
 from django.urls import path
+from django.views.generic.base import RedirectView
+
+from geninfo.info import views
+
 
 urlpatterns = [
     path("", views.get_home),

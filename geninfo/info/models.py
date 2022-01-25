@@ -1,11 +1,13 @@
-from django.db import models
-from django.contrib.auth.models import User
-from django.contrib.contenttypes.models import ContentType
-from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 import datetime
 
-from .mail import send_email_notification_open, send_email_notification_closed
+from django.contrib.auth.models import User
+from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
+from django.contrib.contenttypes.models import ContentType
+from django.db import models
 from django.db.models.signals import post_save, pre_save
+
+from .mail import send_email_notification_closed, send_email_notification_open
+
 
 INFO_CHOICES = (("op", "Operacional"), ("nop", "Não Operacional"))
 

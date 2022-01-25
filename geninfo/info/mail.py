@@ -1,8 +1,6 @@
 from django.conf import settings
-from django.db import transaction
-
-# envio de email com template
 from django.core.mail import EmailMultiAlternatives
+from django.db import transaction
 from django.template.defaultfilters import striptags
 from django.template.loader import render_to_string
 

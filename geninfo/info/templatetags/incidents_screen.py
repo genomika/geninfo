@@ -1,5 +1,7 @@
 from django import template
-from ..models import Report, Incident
+
+from ..models import Incident, Report
+
 
 register = template.Library()
 
