@@ -29,6 +29,8 @@ jobs:
     - name: Run Prospector
       working-directory: .
       run: prospector -X
+      env:
+        DJANGO_SETTINGS_MODULE: 'geninfo.settings.test'
     - name: Run Tests
       working-directory: backend
       run: python manage.py test
