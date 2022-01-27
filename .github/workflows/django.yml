@@ -42,6 +42,7 @@ jobs:
       env:
         SECRET_KEY: ${{ steps.secret-id-generator.outputs.SECRET_KEY }}
         SENDGRID_API_KEY: foo
+        DEBUG: 0
         SENDGRID_SANDBOX_MODE_IN_DEBUG: 0
         DJANGO_SETTINGS_MODULE: 'geninfo.settings.production'
         FROM_EMAIL: "teste@teste.com"
