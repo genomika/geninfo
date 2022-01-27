@@ -36,6 +36,17 @@ jobs:
       env:
         DJANGO_SETTINGS_MODULE: 'geninfo.settings.test'
         SECRET_KEY: ${{ steps.secret-id-generator.outputs.SECRET_KEY }}
+    - name: Run Check Deploy
+      run: python manage.py check --deploy --fail-level WARNING
+      working-directory: .
+      env:
+        SECRET_KEY: ${{ steps.secret-id-generator.outputs.SECRET_KEY }}
+        SENDGRID_API_KEY: foo
+        SENDGRID_SANDBOX_MODE_IN_DEBUG: 0
+        DJANGO_SETTINGS_MODULE: 'geninfo.settings.production'
+        FROM_EMAIL: "teste@teste.com"
+        TO_EMAIL: "teste@teste.com"
+      shell: bash
     - name: Run Tests
       working-directory: .
       run: python manage.py test
@@ -53,3 +64,4 @@ jobs:
         - 5432:5432
         # needed because the postgres container does not provide a healthcheck
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
