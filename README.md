@@ -1,7 +1,6 @@
-# Heroku Geninfo
+# Heroku Geninfo  [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/genomika/geninfo/)
 
 [![License: MIT](https://img.shields.io/github/license/genomika/geninfo)](LICENSE.txt)
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/genomika/geninfo/)
 [![Django CI](https://github.com/genomika/geninfo/actions/workflows/django.yml/badge.svg?branch=main)](https://github.com/genomika/geninfo/actions/workflows/django.yml)
 
 
