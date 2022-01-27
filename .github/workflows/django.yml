@@ -26,13 +26,18 @@ jobs:
       env:
         DATABASE_URL: 'sqlite:///'
         DJANGO_SETTINGS_MODULE: 'geninfo.settings.test'
+    - name: Generate secret key
+      run: echo '::set-output name=SECRET_KEY::`python -c "import uuid; print(uuid.uuid4().hex + uuid.uuid4().hex)"`'
+      id: secret-id-generator
+      shell: bash
     - name: Run Prospector
       working-directory: .
       run: prospector -X
       env:
         DJANGO_SETTINGS_MODULE: 'geninfo.settings.test'
+        SECRET_KEY: ${{ steps.secret-id-generator.outputs.SECRET_KEY }}
     - name: Run Tests
-      working-directory: backend
+      working-directory: .
       run: python manage.py test
       env:
         DATABASE_URL: 'postgres://postgres:postgres@localhost:${{ job.services.postgres.ports[5432] }}/postgres'
