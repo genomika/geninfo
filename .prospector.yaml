@@ -37,6 +37,7 @@ pylint:
     - no-self-use
     - no-member
     - use-maxsplit-arg
+    - too-many-branches
   options:
     max-line-length: 100
 
