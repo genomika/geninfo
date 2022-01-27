@@ -1,3 +1,5 @@
+# pylint: disable=consider-using-f-string, too-many-locals
+
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.db import transaction
@@ -13,7 +15,9 @@ def on_transaction_commit(func):
 
 
 @on_transaction_commit
-def send_email_notification_open(sender, instance, **kwargs):
+def send_email_notification_open(
+    sender, instance, **kwargs
+):  # pylint: disable=unused-argument
     created = kwargs.get("created")
 
     if not created:

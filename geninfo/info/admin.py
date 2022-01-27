@@ -1,3 +1,6 @@
+# pylint: disable=consider-using-f-string, protected-access, too-many-locals, unused-argument
+
+
 import csv
 
 from django.conf import settings
@@ -176,8 +179,8 @@ class IncidentAdmin(admin.ModelAdmin):
                 post = request.POST.copy()
                 for u in Incident.objects.all():
                     post.update({ACTION_CHECKBOX_NAME: str(u.id)})
-                request._set_post(post)
-        return super(IncidentAdmin, self).changelist_view(request, extra_context)
+                request._set_post(post)  # pylint disable
+        return super().changelist_view(request, extra_context)
 
 
 admin.site.register(Service, ServiceAdmin)

@@ -49,3 +49,4 @@ def duration_incident(incident_object):
         if date_duration_hour == "1":
             return date_duration_hour + " Hora"
         return date_duration_hour + " Horas"
+    return "-"

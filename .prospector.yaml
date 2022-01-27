@@ -19,6 +19,9 @@ pep8:
     - D105
     - D205
     - D400
+    - W503
+    - E262
+    - E261
     - N802  # function name should be lowercase, breaks on tests
   options:
     max-line-length: 100
@@ -33,6 +36,7 @@ pylint:
     - invalid-name
     - no-self-use
     - no-member
+    - use-maxsplit-arg
   options:
     max-line-length: 100
 

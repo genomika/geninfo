@@ -1,6 +1,6 @@
 import datetime
 
-from django.contrib.auth.models import User
+from django.conf import settings
 from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
@@ -51,7 +51,7 @@ def increment_id():
 class Report(models.Model):
     description_report = models.CharField(verbose_name="Relatório", max_length=65)
     user = models.ForeignKey(
-        User,
+        settings.AUTH_USER_MODEL,
         editable=False,
         verbose_name="Usuário",
         null=True,

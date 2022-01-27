@@ -1,3 +1,5 @@
+# pylint: disable=too-many-return-statements
+
 from django import template
 from django.utils import timezone
 
@@ -20,11 +22,9 @@ def overall_incident():
         if month_incident == month_current:
             overall = overall + 1
 
-    try:
-        if overall > 0:
-            return overall
-    except Exception:
-        return "Sem incidentes"
+    if overall > 0:
+        return overall
+    return "Sem incidentes"
 
 
 @register.simple_tag
@@ -40,7 +40,6 @@ def incident_day(incident_object):
 @register.simple_tag
 def date_current():
     date_on_day = timezone.now().strftime("%d/%m/%Y")
-    print(date_on_day)
     return date_on_day
 
 
@@ -49,9 +48,8 @@ def date_incident_in():
     incident = Incident.objects.all()
 
     response = []
-    for incident_day in incident:
-        response.append(incident_day.date_incident.strftime("%d/%m/%Y"))
-        print(incident_day)
+    for inc_day in incident:
+        response.append(inc_day.date_incident.strftime("%d/%m/%Y"))
     return response
 
 
@@ -67,7 +65,6 @@ def duration_incident(incident_object):
     minutos = int(minutos[0])
 
     date_duration_hour = str(date_duration).split(":")[0]
-
     try:
         if incident.status_incident == "rs":
             if date_duration.days > 1:
@@ -82,9 +79,8 @@ def duration_incident(incident_object):
                 if date_duration_hour == "1":
                     return date_duration_hour + " Hora"
                 return date_duration_hour + " Horas"
-        else:
-            return " - "
-    except Exception:
+        return " - "
+    except Exception:  # pylint: disable=broad-except
         return "-"
 
 
@@ -99,23 +95,12 @@ def status_service(number):
         return True
     return False
 
-    """
-    incident_in = Incident.objects.get(number_incident=number)
-    size_incidentes = incident_in.services_afted.count()
-    if incident_in.status_incident == 'en' or incident_in.status_incident == 'pe':
-        if size_incidentes > 0:
-            return True
-        else:
-            return False
-    """
-
 
 @register.simple_tag
 def last_report(incident_object):
     incident = Incident.objects.get(number_incident=incident_object)
 
-    last_report = incident.reports.last()
-    if last_report:
-        return last_report
-    else:
-        return "Sem atualizações"
+    last_incident_report = incident.reports.last()
+    if last_incident_report:
+        return last_incident_report
+    return "Sem atualizações"

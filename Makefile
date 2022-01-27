@@ -24,6 +24,10 @@ logs:
 migrations:
 	docker-compose exec web python manage.py makemigrations
 
+missing_migrations:
+	docker-compose exec web python manage.py makemigrations --check --dry-run
+
+
 migrate:
 	docker-compose exec web python manage.py migrate
 
