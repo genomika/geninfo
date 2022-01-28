@@ -2,6 +2,7 @@
 
 [![License: MIT](https://img.shields.io/github/license/genomika/geninfo)](LICENSE.txt)
 [![Django CI](https://github.com/genomika/geninfo/actions/workflows/django.yml/badge.svg?branch=main)](https://github.com/genomika/geninfo/actions/workflows/django.yml)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 
 ## About
@@ -135,6 +136,18 @@ You can start things up again with `make up` and unlike the first
 time it should only take seconds.
 
 
+## Deployment
+
+This project comes with an `app.json` file, which can be used to create an app on Heroku from a GitHub repository.
+
+Before deploying, please make sure you've generated an up-to-date `requirements.txt` file containing the Python dependencies. This is necessary even if you've used Docker for local runs. If your repository is public, you can use the following button:
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy) 
+
+If you are in a private repository, access the following link replacing `$YOUR_REPOSITORY_LINK$` with your repository link.
+
+- `https://heroku.com/deploy?template=$YOUR_REPOSITORY_LINK$`
+
 ## Features Catalog
 
 - `django` for building backend logic using Python
@@ -143,7 +156,7 @@ time it should only take seconds.
 - `psycopg2` for using PostgreSQL database
 - `whitenoise` for serving static assets
 - `gunicorn` for an app server in both development and production
-
+- `mailhog` for testing our e-mail workflows.
 ## Contributing
 
 If you wish to contribute to this project, please first discuss the change you wish to make via an [issue](https://github.com/genomika/geninfo/issues).
