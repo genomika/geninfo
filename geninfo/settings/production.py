@@ -1,5 +1,6 @@
 from .base import *  # noqa
 
+
 # Security
 SECURE_HSTS_PRELOAD = True
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")

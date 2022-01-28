@@ -12,5 +12,5 @@ MEDIA_URL = "/media/"
 db_from_env = dj_database_url.config()
 DATABASES["default"].update(db_from_env)
 DATABASES["default"]["CONN_MAX_AGE"] = 500
-if "OPTIONS" in DATABASES["default"]:
+if "OPTIONS" in DATABASES["default"] and 'sslmode' in DATABASES['default']['OPTIONS']:
     del DATABASES["default"]["OPTIONS"]["sslmode"]
