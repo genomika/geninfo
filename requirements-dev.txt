@@ -6,3 +6,6 @@ isort
 prospector[with-vulture]
 safety
 tox
+tblib
+model-bakery
+pylint-django

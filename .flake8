@@ -1,7 +1,8 @@
 [flake8]
 max-line-length = 100
-ignore = D100,D101,D102,D103,D105,D205,D400,W503
+ignore = D100,D101,D102,D103,D105,D205,D400,W503,I201
 exclude = node_modules/*,*/migrations/*,*/settings/*,./venv/*,./env/*
+application_import_names = geninfo
 
 putty-ignore =
   test_*.py : E501

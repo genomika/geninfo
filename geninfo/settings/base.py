@@ -42,6 +42,7 @@ ADMINS = (("Admin", "foo@example.com"),)
 INSTALLED_APPS = [
     "suit",
     "rest_framework",
+    "rest_framework_swagger",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -86,6 +87,7 @@ WSGI_APPLICATION = "geninfo.wsgi.application"
 
 
 REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
     "PAGE_SIZE": 10,
     "DEFAULT_AUTHENTICATION_CLASSES": [

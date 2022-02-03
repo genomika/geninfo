@@ -72,15 +72,15 @@ class Report(models.Model):
     )
 
     class Meta:
-        verbose_name = u"Relatório"
-        verbose_name_plural = u"Relatórios"
+        verbose_name = "Relatório"
+        verbose_name_plural = "Relatórios"
 
     def __str__(self):
         return self.description_report
 
 
 class Service(models.Model):
-    name = models.CharField(verbose_name=u"Nome do Serviço", max_length=30)
+    name = models.CharField(verbose_name="Nome do Serviço", max_length=30)
     status_service = models.CharField(
         choices=INFO_CHOICES,
         verbose_name="Status do Serviço",
@@ -89,8 +89,8 @@ class Service(models.Model):
     )
 
     class Meta:
-        verbose_name = u"Serviço"
-        verbose_name_plural = u"Serviços"
+        verbose_name = "Serviço"
+        verbose_name_plural = "Serviços"
 
     def __str__(self):
         return self.name
@@ -139,8 +139,8 @@ class Incident(models.Model):
     reports = GenericRelation(Report)
 
     class Meta:
-        verbose_name = u"Incidente"
-        verbose_name_plural = u"Incidentes"
+        verbose_name = "Incidente"
+        verbose_name_plural = "Incidentes"
 
     def __str__(self):
         return self.name_incident

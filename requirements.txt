@@ -8,3 +8,4 @@ gunicorn
 django-heroku==0.3.1
 whitenoise
 django-sendgrid-v5
+django-rest-swagger

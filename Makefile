@@ -6,7 +6,7 @@ clean:
 
 
 build:
-	docker build --tag geninfo . 
+	docker build --tag geninfo .
 
 up: down build
 	docker-compose up -d
@@ -52,10 +52,13 @@ tox:
 	docker-compose exec web tox .
 
 test:
-	docker-compose run web  python manage.py test $(ARG) --parallel --keepdb
+	docker-compose exec web python3 manage.py test $(ARG) --keepdb
 
 lint:
 	docker-compose exec web prospector
 
 format:
 	docker-compose exec web black geninfo
+
+collect:
+	docker-compose exec web python3 manage.py collectstatic
