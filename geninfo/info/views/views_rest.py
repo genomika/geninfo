@@ -26,20 +26,21 @@ class IncidentViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         """Retrieve the incidents"""
-        services = self.request.query_params.get("services")
-        status = self.request.query_params.get("status")
+        services = self.request.query_params.get("services", None)
+        status_inc = self.request.query_params.get("status", None)
         queryset = self.queryset
         if services:
             service_ids = self._params_to_ints(services)
             queryset = queryset.filter(services__id__in=service_ids)
-        if status:
-            queryset = queryset.filter(status_incident=status)
+        if status_inc:
+            queryset = queryset.filter(status_incident=status_inc)
 
         return queryset
 
     @action(methods=["POST"], detail=True, url_path="close")
     def close(self, request, pk=None):
         """Close the incident"""
+        # pylint: disable=unused-argument
         incident = self.get_object()
         serializer = serializers.CloseSerializer(data=request.data)
         if serializer.is_valid():
@@ -57,6 +58,7 @@ class IncidentViewSet(viewsets.ModelViewSet):
 
     @action(methods=["POST"], detail=True, url_path="report")
     def report(self, request, pk=None):
+        # pylint: disable=unused-argument
         """Append a report to the incident"""
         incident = self.get_object()
         serializer = serializers.ReportSerializer(data=request.data)

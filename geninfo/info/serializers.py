@@ -10,20 +10,26 @@ class CloseSerializer(serializers.Serializer):
     description_report = serializers.CharField(max_length=65, required=False)
     detail_report = serializers.CharField(max_length=400, required=False)
 
-    def validate(self, data):
+    def validate(self, attrs):
         """
         Check both required fields for report exists.
         """
 
-        if data.get("description_report") and not data.get("detail_report"):
+        if attrs.get("description_report") and not attrs.get("detail_report"):
             raise serializers.ValidationError(
                 "Detail report must exist to create a report."
             )
-        if data.get("detail_report") and not data.get("description_report"):
+        if attrs.get("detail_report") and not attrs.get("description_report"):
             raise serializers.ValidationError(
                 "Description report must exist to create a report."
             )
-        return data
+        return attrs
+
+    def update(self, instance, validated_data):
+        pass
+
+    def create(self, validated_data):
+        pass
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -68,12 +74,11 @@ class ReportRelatedField(serializers.RelatedField):
 
         return serializer.data
 
-    def to_internal_value(self, value):
-        report_class = Report.objects.filter(pk=value)
+    def to_internal_value(self, data):
+        report_class = Report.objects.filter(pk=data)
         if report_class and (len(report_class)) == 1:
             return report_class.get()
-        else:
-            raise serializers.ValidationError("Report with pk: %s not found" % value)
+        raise serializers.ValidationError(f"Report with pk: {data} not found")
 
 
 class IncidentSerializer(serializers.ModelSerializer):

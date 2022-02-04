@@ -38,8 +38,10 @@ pylint:
     - no-member
     - use-maxsplit-arg
     - too-many-branches
+    - consider-using-dict-items
   options:
     max-line-length: 100
+    max-parents: 15
 
 dodgy:
   run: true

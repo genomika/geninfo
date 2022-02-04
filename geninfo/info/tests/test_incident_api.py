@@ -81,7 +81,7 @@ class PrivateIncidentApiTests(TestCase):
         res = self.client.post(INCIDENTS_URL, payload)
         self.assertEqual(res.status_code, status.HTTP_201_CREATED)
         incident = Incident.objects.get(id=res.data["id"])
-        for key in payload.keys():
+        for key in payload:
             self.assertEqual(payload[key], getattr(incident, key))
 
     def test_create_incident_with_services(self):
