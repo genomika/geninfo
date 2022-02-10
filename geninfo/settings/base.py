@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
+import datetime
 import os
 
 import django_heroku
@@ -42,13 +43,14 @@ ADMINS = (("Admin", "foo@example.com"),)
 INSTALLED_APPS = [
     "suit",
     "rest_framework",
-    "rest_framework_swagger",
+    "rest_framework.authtoken",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "drf_yasg2",
     "geninfo.common",
     "geninfo.info",
 ]
@@ -87,11 +89,10 @@ WSGI_APPLICATION = "geninfo.wsgi.application"
 
 
 REST_FRAMEWORK = {
-    "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
     "PAGE_SIZE": 10,
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
     ],
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticated",
@@ -121,6 +122,12 @@ DATABASES = {
 
 SUIT_CONFIG = {
     "ADMIN_NAME": "Geninfo - v" + open("VERSION").read(),
+}
+
+SWAGGER_SETTINGS = {
+    "SECURITY_DEFINITIONS": {
+        "Bearer": {"type": "apiKey", "name": "Authorization", "in": "header"}
+    }
 }
 
 

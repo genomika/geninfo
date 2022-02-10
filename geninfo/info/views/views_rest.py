@@ -1,3 +1,6 @@
+# pylint: disable=no-name-in-module import-error
+from drf_yasg2.utils import swagger_auto_schema
+
 from rest_framework import status, viewsets
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.decorators import action
@@ -9,6 +12,10 @@ from geninfo.info.models import Incident
 
 
 class IncidentViewSet(viewsets.ModelViewSet):
+    """
+    Incident Resource.
+    """
+
     queryset = Incident.objects.all()
     serializer_class = serializers.IncidentSerializer
     authentication_classes = (TokenAuthentication,)
@@ -37,6 +44,9 @@ class IncidentViewSet(viewsets.ModelViewSet):
 
         return queryset
 
+    @swagger_auto_schema(
+        request_body=serializers.CloseSerializer(), responses={200: '{"success": True}'}
+    )
     @action(methods=["POST"], detail=True, url_path="close")
     def close(self, request, pk=None):
         """Close the incident"""
@@ -56,6 +66,10 @@ class IncidentViewSet(viewsets.ModelViewSet):
             return Response(inc_ser.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    @swagger_auto_schema(
+        request_body=serializers.ReportSerializer(),
+        responses={200: serializers.ReportSerializer},
+    )
     @action(methods=["POST"], detail=True, url_path="report")
     def report(self, request, pk=None):
         # pylint: disable=unused-argument

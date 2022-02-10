@@ -1,20 +1,48 @@
+# pylint: disable=no-name-in-module import-error
+from os import environ
+
 from django.conf import settings
 from django.conf.urls import url
 from django.urls import include, path
 from django.views.generic.base import RedirectView
 
+from drf_yasg2 import openapi
+from drf_yasg2.views import get_schema_view
+from rest_framework import permissions
+from rest_framework.authtoken import views as authtoken_views
 from rest_framework.routers import DefaultRouter
-from rest_framework.schemas import get_schema_view
-from rest_framework_swagger.renderers import OpenAPIRenderer, SwaggerUIRenderer
 
 from geninfo.info import views
 
 
 app_name = "info"
 
-schema_view = get_schema_view(
-    title="Geninfo API", renderer_classes=[OpenAPIRenderer, SwaggerUIRenderer]
-)
+
+def get_custom_schema_view():
+    try:
+        env_url = environ["API_URL"]
+        schema_view = get_schema_view(
+            openapi.Info(
+                title="Geninfo API",
+                default_version="v1",
+                description="Geninfo API Docummentation",
+            ),
+            url=env_url,
+            public=True,
+            permission_classes=[permissions.AllowAny],
+        )
+    except KeyError:
+        schema_view = get_schema_view(
+            openapi.Info(
+                title="Geninfo API",
+                default_version="v1",
+                description="Geninfo API Docummentation",
+            ),
+            public=True,
+            permission_classes=[permissions.AllowAny],
+        )
+    return schema_view
+
 
 router = DefaultRouter()
 router.register("incidents", views.views_rest.IncidentViewSet)
@@ -31,5 +59,10 @@ urlpatterns = [
         RedirectView.as_view(url=settings.STATIC_URL + "images/favicon.ico"),
     ),
     path("api/", include(router.urls)),
-    url("api/docs", schema_view),
+    path(
+        "api/docs",
+        get_custom_schema_view().with_ui("swagger", cache_timeout=0),
+        name="schema-swagger-ui",
+    ),
+    path("api/login/", authtoken_views.obtain_auth_token),
 ]

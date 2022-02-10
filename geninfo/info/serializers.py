@@ -1,8 +1,30 @@
 from django.contrib.auth import get_user_model
 
-from rest_framework import serializers
+from rest_framework import relations, serializers
 
 from geninfo.info.models import Incident, Report, Service
+
+
+class PrimaryKeyInObjectOutRelatedField(relations.PrimaryKeyRelatedField):
+    """
+    Django Rest Framework RelatedField which takes the primary key as input
+    to allow setting relations, but takes an optional `output_serializer_class`
+    parameter, which if specified, will be used to serialize the data in responses.
+    """
+
+    def __init__(self, **kwargs):
+        self._output_serializer_class = kwargs.pop("output_serializer_class", None)
+        super().__init__(**kwargs)
+
+    def use_pk_only_optimization(self):
+        return not bool(self._output_serializer_class)
+
+    def to_representation(self, value):
+        if self._output_serializer_class:
+            data = self._output_serializer_class(value).data
+        else:
+            data = super().to_representation(value)
+        return data
 
 
 class CloseSerializer(serializers.Serializer):
@@ -86,9 +108,12 @@ class IncidentSerializer(serializers.ModelSerializer):
     Serialize an Incident
     """
 
-    services_afted = serializers.PrimaryKeyRelatedField(
-        many=True, queryset=Service.objects.all()
+    services_afted = PrimaryKeyInObjectOutRelatedField(
+        many=True,
+        output_serializer_class=ServiceSerializer,
+        queryset=Service.objects.all(),
     )
+
     reports = ReportRelatedField(many=True, queryset=Report.objects.all())
 
     def create(self, validated_data):
@@ -120,7 +145,6 @@ class IncidentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Incident
-        depth = 2
         fields = (
             "id",
             "number_incident",

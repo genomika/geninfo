@@ -104,6 +104,12 @@ make super
 make lint
 ```
 
+#### Collect static files for local run:
+
+```sh
+make collect
+```
+
 #### Formatting the code base:
 
 ```sh
