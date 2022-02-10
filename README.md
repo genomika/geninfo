@@ -27,6 +27,7 @@ This project provides an example of our Django (Client/Server) based application
 - [PostgreSQL](https://www.postgresql.org/), for DB.
 - [prospector](https://prospector.landscape.io/en/master/), for automated quality assurance.
 - [Sendgrid](https://sendgrid.com/), for E-mail sending
+- [Sentry](https://open.sentry.io/), for live error logging
 
 For continuous integration, a [Github Action](https://github.com/features/actions) configuration .github/workflows/main.yml is included.
 
@@ -170,6 +171,8 @@ If you are in a private repository, access the following link replacing `$YOUR_R
 - `whitenoise` for serving static assets
 - `gunicorn` for an app server in both development and production
 - `mailhog` for testing our e-mail workflows.
+- `drf_yasg2` for building the DRF specs and API docs
+- `sentry-sdk` for logging errors tool
 ## Contributing
 
 If you wish to contribute to this project, please first discuss the change you wish to make via an [issue](https://github.com/genomika/geninfo/issues).
