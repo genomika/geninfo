@@ -32,6 +32,7 @@ __pycache__/*
 
 
 # Project
+*/staticfiles/*
 build/*
 dist/*
 *.egg-info/*

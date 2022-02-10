@@ -1,4 +1,4 @@
-# pylint: disable=no-name-in-module import-error
+# pylint: disable=no-name-in-module import-error useless-suppression
 from os import environ
 
 from django.conf import settings

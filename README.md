@@ -8,8 +8,15 @@
 ## About
 Geninfo is a open-source project for any brazilian company interested on monitoring and tracking your infra-structure (machines, network, etc) as a realtime status monitor checker for any user. Please we recommend reading our blog post with all motivation about why and for whom we decided to build this project.
 
-[![Screenshot](.github/docs/screenshot.png)](https://github.com/genomika/geninfo/blob/main/.github/docs/screenshot.jpg?raw=true)
+[![Screenshot](.github/docs/screenshot.png)](https://github.com/genomika/geninfo/blob/main/.github/docs/screenshot.png?raw=true)
 
+## API Restful
+
+Geninfo also provides a set of useful APIs for integrating with the third-party tools that needs to automate the flow of reporting, updating and closing incidents.
+
+Take a look at our Swagger UI interface and play with our API Playgroun by appending **'/api/docs'** at the main domain.
+
+[![Screenshot2](.github/docs/screenshot2.png)](https://github.com/genomika/geninfo/blob/main/.github/docs/screenshot2.png?raw=true)
 
 
 ## Tech stack

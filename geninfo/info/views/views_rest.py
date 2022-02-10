@@ -1,4 +1,4 @@
-# pylint: disable=no-name-in-module import-error
+# pylint: disable=no-name-in-module import-error useless-suppression
 from drf_yasg2.utils import swagger_auto_schema
 
 from rest_framework import status, viewsets
