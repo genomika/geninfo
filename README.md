@@ -19,6 +19,41 @@ Take a look at our Swagger UI interface and play with our API Playgroun by appen
 [![Screenshot2](.github/docs/screenshot2.png)](https://github.com/genomika/geninfo/blob/main/.github/docs/screenshot2.png?raw=true)
 
 
+With the live project on-line you can use some available APIs, let's introduce some of them:
+
+
+## Get a Token
+
+The Django Rest Framework uses a AuthToken to interact with the Geninfo API. So any further requests you will need to pass the Authorization Token in the headers. Use the **/login** API to get one valid token (you must have a valid user and password).
+
+```sh
+curl -X POST "http://YOUR_URL/api/login/" -H  "accept: application/json" -H  "Content-Type: application/json"  -d "{  \"username\": \"username\",  \"password\": \"password\"}"
+```
+
+## Create an incident
+
+You can request using the POST method to the  **/api/incidents/** , with incident payload required information. Don't forget to include the Authorization Token in the header of the request or you will not get the authorization to perform the action.
+
+```sh
+curl -X POST "http://YOUR_URL/api/incidents/" -H  "accept: application/json" -H  "Authorization: Token 449d55f1ff070eb9b33061f9ad35cf0f9912f16e" -H  "Content-Type: application/json"  -d "{  \"name_incident\": \"Incident\",  \"incident_occurrence\": \"co\",  \"incident_impact\": \"le\",  \"description\": \"Incident happened\",  \"services_afted\": [1],  \"reports\": []}"
+```
+
+## Add a status report
+
+If you need to add a update report about the incident, you can use the API **/incidents/{id}/report/** , by giving the report required fields and the incident PK at the request url.
+
+```sh
+curl -X POST "http://YOUR_URL/api/incidents/5/report/" -H  "accept: application/json" -H  "Authorization: Token YOURTOKEN" -H  "Content-Type: application/json" -d "{  \"description_report\": \"Update Report\",  \"obs_report\": \"It still under work\"}"
+```
+
+## Close the incident
+
+FInally you can close the incident by calling the **/api/incidents/{id}/close/**. It will close the incident and it will add a finish date given by your API.
+
+```sh
+curl -X POST "http://YOUR_URL/api/incidents/5/close/" -H  "accept: application/json" -H  "Authorization: Token YOURTOKEN" -H  "Content-Type: application/json"  -d "{  \"finish_date\": \"2022-02-11T19:36:24.359Z\",  \"description_report\": \"Finally working!\",  \"detail_report\": \"They recovered the internet\"}"
+```
+
 ## Tech stack
 
 This project provides an example of our Django (Client/Server) based application hosted on Heroku with a Gunicorn Django setup. There are a lot of state of the art libraries and tools like:
