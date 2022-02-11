@@ -14,9 +14,24 @@
       }
     },
     "addons": [
-        "heroku-postgresql:hobby-dev",
-        "sendgrid:starter",
-        "sentry"
+      {
+        "plan": "heroku-postgresql:hobby-dev",
+        "options": {
+          "version": "13"
+        },
+        "as": "DATABASE"
+      },
+      {
+        "plan": "sendgrid:starter"
+      },
+      {
+        "plan": "sentry"
+      }
+   ],
+    "buildpacks": [
+      {
+        "url": "heroku/python"
+      }
     ],
     "scripts": {
       "postdeploy": "python manage.py migrate --noinput"
