@@ -35,7 +35,7 @@
         "plan": "sendgrid:starter"
       },
       {
-        "plan": "sentry"
+        "plan": "sentry:f1"
       }
    ],
     "buildpacks": [
