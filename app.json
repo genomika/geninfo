@@ -44,6 +44,6 @@
       }
     ],
     "scripts": {
-      "postdeploy": "python manage.py migrate --noinput && echo \"from django.contrib.auth.models import User; User.objects.create_superuser('${ADMIN_USER}', '${ADMIN_EMAIL}', '${ADMIN_PASSWORD}')\" | python manage.py shell && manage.py loaddata geninfo/info/fixtures/services.json --app info.Service"
+      "postdeploy": "python manage.py migrate --noinput && echo \"from django.contrib.auth.models import User; User.objects.create_superuser('${ADMIN_USER}', '${ADMIN_EMAIL}', '${ADMIN_PASSWORD}')\" | python manage.py shell && python manage.py loaddata geninfo/info/fixtures/services.json --app info.Service"
     }
   }
