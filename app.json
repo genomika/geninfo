@@ -11,6 +11,16 @@
       "DJANGO_SETTINGS_MODULE": {
         "description": "Django settings Python import path",
         "value": "geninfo.settings.production"
+      },
+      "ADMIN_USER": {
+        "description": "The username of your admin account",
+        "value": "admin"
+      },
+      "ADMIN_EMAIL": {
+        "description": "The initial email of your admin account"
+      },
+      "ADMIN_PASSWORD": {
+        "description": "The initial password of your admin account"
       }
     },
     "addons": [
@@ -34,6 +44,6 @@
       }
     ],
     "scripts": {
-      "postdeploy": "python manage.py migrate --noinput"
+      "postdeploy": "python manage.py migrate --noinput && echo \"from django.contrib.auth.models import User; User.objects.create_superuser('${ADMIN_USER}', '${ADMIN_EMAIL}', '${ADMIN_PASSWORD}')\" | python manage.py shell && manage.py loaddata geninfo/info/fixtures/services.json --app info.Service"
     }
   }
