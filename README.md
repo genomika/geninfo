@@ -4,7 +4,7 @@
 [![License: MIT](https://img.shields.io/github/license/genomika/geninfo)](LICENSE.txt)
 [![Django CI](https://github.com/genomika/geninfo/actions/workflows/django.yml/badge.svg?branch=main)](https://github.com/genomika/geninfo/actions/workflows/django.yml)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-
+[![Generic badge](https://img.shields.io/badge/Demo-On-line-Green.svg)](https://geninfo-demo.herokuapp.com/)
 
 ## About
 Geninfo is a open-source project for any brazilian company interested on monitoring and tracking your infra-structure (machines, network, etc) as a realtime status monitor checker for any user. Please we recommend reading our blog post with all motivation about why and for whom we decided to build this project.
