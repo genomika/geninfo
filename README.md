@@ -7,7 +7,7 @@
 [![Demo](https://img.shields.io/badge/Demo-On--line-green.svg)](https://geninfo-demo.herokuapp.com/)
 
 ## About
-Geninfo is a open-source project for any brazilian company interested on monitoring and tracking your infra-structure (machines, network, etc) as a realtime status monitor checker for any user. Please we recommend reading our blog post with all motivation about why and for whom we decided to build this project.
+Geninfo is a open-source project for any brazilian company interested on monitoring and tracking your infra-structure (machines, network, etc) as a realtime status monitor checker for any user. Please we recommend reading our [blog post](https://medium.com/genomics-healthcare-systems/experiences-on-building-a-status-incident-management-page-from-private-to-open-source-e0227a69a445) with all motivation about why and for whom we decided to build this project.
 
 [![Screenshot](.github/docs/screenshot.png)](https://github.com/genomika/geninfo/blob/main/.github/docs/screenshot.png?raw=true)
 
